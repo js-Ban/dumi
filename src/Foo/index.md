@@ -11,7 +11,7 @@ Demo:
 ```tsx
 import React from 'react';
 import { Foo } from 'dumi';
-
+import { antd } from 'antd';
 export default () => <Foo title="First Demo" />;
 ```
 
