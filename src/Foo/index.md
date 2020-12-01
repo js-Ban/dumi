@@ -1,7 +1,7 @@
 ---
 nav:
-  title: Components 123
-  path: /components 123
+  title: Components
+  path: /components
 ---
 
 ## Foo
@@ -11,7 +11,7 @@ Demo:
 ```tsx
 import React from 'react';
 import { Foo } from 'dumi';
-import { antd } from 'antd';
+
 export default () => <Foo title="First Demo" />;
 ```
 
