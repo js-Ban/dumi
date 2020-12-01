@@ -1,6 +1,6 @@
 ---
 nav:
-  title: Components
+  title: Components 123
   path: /components
 ---
 
