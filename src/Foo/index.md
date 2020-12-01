@@ -1,7 +1,11 @@
 ---
 nav:
   title: Components 123
+<<<<<<< HEAD
   path: /components 123
+=======
+  path: /components
+>>>>>>> b683f3f... Update 1
 ---
 
 ## Foo
