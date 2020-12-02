@@ -1,6 +1,6 @@
 ---
 hero:
-  title: Site Name
+  title: Personal Dumi
   desc: dumi site app example
   actions:
     - text: Getting Started

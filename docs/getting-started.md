@@ -4,6 +4,6 @@ nav:
   order: 1
 ---
 
-# Getting Started
+# Environment setup
 
-Balabala...
+# 环境准备
