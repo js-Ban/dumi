@@ -1,6 +1,6 @@
 ---
 nav:
-  title: 渲染示例
+  title: 一对多联动
 #   path: /components
 ---
 
