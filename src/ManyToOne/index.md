@@ -1,10 +1,10 @@
 ---
 nav:
-  title: 一对多联动
+  title: 实现复杂联动逻辑
 #   path: /components
 ---
 
-# 实现复杂联动逻辑
+## 多对一联动
 
 ##### Demo:
 
@@ -25,21 +25,8 @@ import { Input, Select } from '@formily/antd-components';
 // import Printer from '@formily/printer';
 import 'antd/dist/antd.css';
 import schema from './schema.ts';
-const { onFieldValueChange$ } = FormEffectHooks;
 
-// const useManyToOneEffects = () => {
-//   const { setFieldState } = createFormActions();
-//   onFieldValueChange$('bb').subscribe(({ value }) => {
-//     setFieldState('aa', (state) => {
-//       state.visible = value;
-//     });
-//   });
-//   onFieldValueChange$('cc').subscribe(({ value }) => {
-//     setFieldState('aa', (state) => {
-//       state.value = value;
-//     });
-//   });
-// };
+// const { onFieldValueChange$ } = FormEffectHooks;
 
 const ManyToOne = () => {
   return (
@@ -48,30 +35,46 @@ const ManyToOne = () => {
       components={{ Input, Select }}
       initialValue={false}
     ></SchemaForm>
-    // <Form
-    //   onSubmit={(values) => {
-    //     console.log(values);
-    //   }}
-    //   effects={() => {
-    //     useManyToOneEffects();
-    //   }}
-    // >
-    //   <FormItem name="aa" title="AA" component={Input} />
-    //   <FormItem
-    //     dataSource={[
-    //       { label: 'visible', value: true },
-    //       { label: 'hidden', value: false },
-    //     ]}
-    //     initialValue={false}
-    //     name="bb"
-    //     title="BB"
-    //     component={Select}
-    //   />
-    //   <FormItem name="cc" title="CC" component={Input} />
-    // </Form>
   );
 };
 
 export default () => <ManyToOne />;
-// ReactDOM.render(<ManyToOne />, document.getElementById('root'));
+```
+
+##### 案例解析
+
+- 多对一联动其实就是一对一联动，只不过作用的对象是同一个字段
+- BB 控制 AA 显示隐藏，CC 控制 AA 的值
+
+## 多依赖联动
+
+```jsx
+import React, { useEffect } from 'react';
+import ReactDOM from 'react-dom';
+import {
+  SchemaForm,
+  SchemaMarkupField as Field,
+  FormButtonGroup,
+  createFormActions,
+  FormEffectHooks,
+  createEffectHook,
+  Submit,
+  Reset,
+} from '@formily/antd'; // 或者 @formily/next
+import { combineLatest } from 'rxjs/operators';
+import { Input, Select } from '@formily/antd-components';
+import 'antd/dist/antd.css';
+import schema1 from './schema.ts';
+
+const Schema1 = () => {
+  return (
+    <SchemaForm
+      components={(Select, Input)}
+      schema={schema1}
+      initiaValues={false}
+    />
+  );
+};
+
+export default () => <Schema1 />;
 ```
