@@ -5,13 +5,13 @@
 Install dependencies,
 
 ```bash
-$ npm i
+$ npm i && yarn
 ```
 
 Start the dev server,
 
 ```bash
-$ npm start
+$ npx dumi dev && yarn start
 ```
 
 Build site app,

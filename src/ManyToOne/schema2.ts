@@ -3,25 +3,37 @@ const schema = {
   key: 'object',
   properties: {
     aa: {
-      type: 'string',
+      type: 'boolean',
       title: 'AA',
       key: 'aa',
-      'x-component': 'Input',
+      'x-component': 'Select',
+      default: false,
+      enum: [
+        { label: 'visible', value: true },
+        { label: 'hidden', value: false },
+      ],
+      'x-linkages': [
+        {
+          type: 'value:visible',
+          target: '*(bb)',
+          condition: '{{!!$value}}',
+        },
+      ],
     },
     bb: {
-      type: 'boolean',
+      type: 'string',
+      title: 'BB',
       key: 'bb',
+      'x-component': 'Input',
       enum: [
         { label: 'visible', value: true },
         { label: 'hidden', value: false },
       ],
       default: false,
-      title: 'BB',
-      'x-component': 'Select',
       'x-linkages': [
         {
           type: 'value:visible',
-          target: '*(aa)',
+          target: '*(cc)',
           condition: '{{!!$value}}',
         },
       ],
@@ -29,11 +41,9 @@ const schema = {
     cc: {
       type: 'string',
       title: 'CC',
+      name: 'cc',
       key: 'cc',
       'x-component': 'Input',
-      'x-component-props': {
-        placeholder: 'CC',
-      },
     },
   },
 };

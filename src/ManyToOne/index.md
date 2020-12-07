@@ -22,18 +22,29 @@ import {
   Reset,
 } from '@formily/antd'; // 或者 @formily/next
 import { Input, Select } from '@formily/antd-components';
-// import Printer from '@formily/printer';
 import 'antd/dist/antd.css';
-import schema from './schema.ts';
-
-// const { onFieldValueChange$ } = FormEffectHooks;
+import schema1 from './schema.ts';
+// import { merge } from 'rxjs';
+const { onFieldInputChange$ } = FormEffectHooks;
 
 const ManyToOne = () => {
+  const useManyToOneEffects = () => {
+    const { setFieldState } = createFormActions();
+    onFieldInputChange$('cc').subscribe(({ value }) => {
+      setFieldState('aa', state => {
+        state.value = value;
+      });
+    });
+  };
+
   return (
     <SchemaForm
-      schema={schema}
+      schema={schema1}
       components={{ Input, Select }}
-      initialValue={false}
+      initialValue={''}
+      effects={() => {
+        useManyToOneEffects();
+      }}
     ></SchemaForm>
   );
 };
@@ -48,6 +59,8 @@ export default () => <ManyToOne />;
 
 ## 多依赖联动
 
+##### Demo:
+
 ```jsx
 import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
@@ -61,20 +74,73 @@ import {
   Submit,
   Reset,
 } from '@formily/antd'; // 或者 @formily/next
-import { combineLatest } from 'rxjs/operators';
+// import { combineLatest } from 'rxjs/operators';
 import { Input, Select } from '@formily/antd-components';
 import 'antd/dist/antd.css';
-import schema1 from './schema.ts';
+import schema from './shcema1.ts';
+const { onFieldInputChange$ } = FormEffectHooks;
 
-const Schema1 = () => {
+const Schema = () => {
+  const useManyToOneEffects = () => {
+    const { setFieldState } = createFormActions();
+    setFieldState('cc', state => {
+      state.value = 123;
+    });
+  };
   return (
     <SchemaForm
-      components={(Select, Input)}
-      schema={schema1}
-      initiaValues={false}
-    />
+      schema={schema}
+      components={{ Select, Input }}
+      initiaValues={''}
+      effects={() => {
+        useManyToOneEffects();
+      }}
+    ></SchemaForm>
   );
 };
 
-export default () => <Schema1 />;
+export default () => <Schema />;
 ```
+
+##### 案例解析
+
+- Field 组件 visible 属性可以控制初始显示状态
+- BB 的显示受外部异步事件所控制
+- CC 的显示隐藏状态受 AA 的值控制，CC 的值受 AA 的附加信息所控制，同时整体联动依赖一个外部异步事件
+
+## 链式联动
+
+##### Demo:
+
+```jsx
+import React, { useEffect } from 'react';
+import ReactDOM from 'react-dom';
+import {
+  SchemaForm,
+  SchemaMarkupField as Field,
+  FormButtonGroup,
+  createFormActions,
+  FormEffectHooks,
+  Submit,
+  Reset,
+} from '@formily/antd'; // 或者 @formily/next
+import { Input, Select } from '@formily/antd-components';
+import 'antd/dist/antd.css';
+import schema from './schema2.ts';
+
+const Schema = () => {
+  return (
+    <SchemaForm
+      schema={schema}
+      initiaValues={''}
+      components={{ Select, Input }}
+    ></SchemaForm>
+  );
+};
+export default () => <Schema />;
+```
+
+##### 案例解析
+
+- 链式联动，其实也是可以归一化为一对一联动
+- AA 控制 BB 显示隐藏，BB 控制 CC 隐藏
