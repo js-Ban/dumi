@@ -8,7 +8,7 @@ nav:
 
 First, you must have a <a href="https://nodejs.org/en/" target="_blank">node</a> and make sure that the node version is 10.13 or above.
 
-```html
+```bash
 $ node -v 版本要大于v10.13.0
 ```
 
@@ -16,7 +16,7 @@ $ node -v 版本要大于v10.13.0
 
 For ease of use, dumi provides two different scaffolds. The difference between the two can be viewed in the guide-multiple presentation modes. We need to find a place to create an empty directory, and then use scaffolding:
 
-```html
+```bash
 $ mkdir myapp && cd myapp
 ```
 
@@ -24,23 +24,23 @@ $ mkdir myapp && cd myapp
 
 In addition to dumi and basic documentation, the component library development scaffold also contains a simple component, umi-test and father-build, which can easily implement the whole process of developing components, writing documents, writing test cases, and packaging components.
 
-```html
-<!-- $ npx @umijs/create-dumi-lib        # 初始化一个文档模式的组件库开发脚手架
+```bash
+$ npx @umijs/create-dumi-lib        # 初始化一个文档模式的组件库开发脚手架
 # or
 $ yarn create @umijs/dumi-lib
 $ npx @umijs/create-dumi-lib --site # 初始化一个站点模式的组件库开发脚手架
 # or
-$ yarn create @umijs/dumi-lib --site -->
+$ yarn create @umijs/dumi-lib --site
 ```
 
 ### Static site scaffolding
 
 Static site scaffolding is a multilingual site mode scaffolding that only contains documents.
 
-```html
-<!-- $ npx @umijs/create-dumi-app
+```bash
+$ npx @umijs/create-dumi-app
 # or
-$ yarn create @umijs/dumi-app -->
+$ yarn create @umijs/dumi-app
 ```
 
 ## Manual initialization
@@ -49,7 +49,7 @@ $ yarn create @umijs/dumi-app -->
 
 Create an empty folder, and then execute the following command under the folder to install:
 
-```html
+```bash
 $ npm i dumi -D
 ```
 
@@ -57,7 +57,7 @@ $ npm i dumi -D
 
 By default, dumi will automatically search for markdown files in the docs, src (or src under each lerna package) directory. Let’s start with the simplest document:
 
-```html
+```bash
 $ mkdir src && echo '# Hello dumi!' > src/index.md
 ```
 
@@ -69,13 +69,14 @@ dumi 会将 jsx/tsx 代码块当做 React Component 进行渲染然后放入 Dem
 
 # Hello dumi!
 
-````html
-<!-- ```jsx
-    import React from 'react';
+`````bash
+# ```jsx
+#     import React from 'react';
 
-    export default () => <h2>First Demo</h2>;
-  ``` -->
-````
+#     export default () => <h2>First Demo</h2>;
+# ````
+
+`````
 
 效果如下：
 
@@ -83,4 +84,8 @@ dumi 会将 jsx/tsx 代码块当做 React Component 进行渲染然后放入 Dem
 import React from 'react';
 
 export default () => <h2>First Demo</h2>;
+```
+
+```
+
 ```
