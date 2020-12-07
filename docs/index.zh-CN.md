@@ -1,6 +1,6 @@
 ---
 hero:
-  title: Site Name
+  title: Guoxiang.Ban Website
   desc: dumi site app 脚手架
   actions:
     - text: 快速上手
